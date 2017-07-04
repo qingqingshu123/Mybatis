@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+                      http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1"
+         metadata-complete="true">
+    <!--修改servlet版本为3.1-->
+
+    <!--配置DispatcherServlert-->
+    <servlet>
+        <servlet-name>ListServlet</servlet-name>
+        <servlet-class>servlet.ListServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>ListServlet</servlet-name>
+        <!--匹配所有请求-->
+        <url-pattern>/List.action</url-pattern>
+    </servlet-mapping>
+
+
+    <!--配置DispatcherServlert-->
+    <servlet>
+        <servlet-name>DeleceOne</servlet-name>
+        <servlet-class>servlet.DeleteOneServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>DeleceOne</servlet-name>
+        <!--匹配所有请求-->
+        <url-pattern>/DeleceOne.action</url-pattern>
+    </servlet-mapping>
+
+
+    <!--配置DispatcherServlert-->
+    <servlet>
+        <servlet-name>DeleceBatch</servlet-name>
+        <servlet-class>servlet.DeleteBatchServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>DeleceBatch</servlet-name>
+        <!--匹配所有请求-->
+        <url-pattern>/DeleteBatch.action</url-pattern>
+    </servlet-mapping>
+
+    <!--配置DispatcherServlert-->
+    <servlet>
+        <servlet-name>InitTalk</servlet-name>
+        <servlet-class>servlet.InitTalkServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>InitTalk</servlet-name>
+        <!--匹配所有请求-->
+        <url-pattern>/InitTalk.action</url-pattern>
+    </servlet-mapping>
+
+
+</web-app>

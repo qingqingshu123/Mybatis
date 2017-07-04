@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--命名空间 类package 防止冲突-->
+<mapper namespace="Message">
+    <!--实体类获得数据库的对应 此类的id冲突只在同一个标签中不重复就行了-->
+    <resultMap type="bean.Message" id="MessageResult">
+        <id column="ID" jdbcType="INTEGER" property="id"/>
+        <result column="COMMAND" jdbcType="VARCHAR" property="command"/>
+        <result column="DESCRIPTION" jdbcType="VARCHAR" property="description"/>
+        <result column="CONTENT" jdbcType="VARCHAR" property="content"/>
+    </resultMap>
+
+    <!--select 语句 查出来的列放入对象对应属性中 一条记录对应一个对象 可能有多条记录-->
+    <select id="queryMessage" parameterType="bean.Message" resultMap="MessageResult">
+        select ID,COMMAND,DESCRIPTION,CONTENT from message where 1=1
+        <if test="command!=null and !&quot;&quot;.equals(command.trim())">and COMMAND=#{command}</if>
+        <!--空格还是要保留-->
+        <if test = "description!=null and !&quot;&quot;.equals(description.trim())">and DESCRIPTION like '%' #{description} '%'</if>
+    </select>
+    
+    
+    <delete id="deleteOne" parameterType="int">
+        delete FROM message where ID=#{_parameter}
+    </delete>
+
+    <delete id="deleteBatch" parameterType="java.util.List"> <!--java.lang 包下不用包名-->
+        delete FROM message where ID in(
+          <foreach collection="list" item="item" separator=",">
+              #{item}
+          </foreach>
+        )
+    </delete>
+</mapper>
+
+

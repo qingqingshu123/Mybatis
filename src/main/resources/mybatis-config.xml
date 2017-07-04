@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+    <!--配置全局属性-->
+    <settings>
+        <!--使用jdbc的getGeratedKeys获取数据库自增主键值-->
+        <setting name="useGeneratedKeys" value="true"/>
+        <!--使用列别名替代列名  默认:true
+            select name as title from table-->
+        <setting name="useColumnLabel" value="true"/>
+        <!--开启驼峰命名转换   Table(create_time)-Entity(createtime)-->
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+    </settings>
+
+
+    <!--不使用数据库连接池-->
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC">
+                <property name="" value=""></property>
+            </transactionManager>
+            <dataSource type="UNPOOLED">
+                <property name="driver" value="com.mysql.jdbc.Driver"></property>
+                <property name="url" value="jdbc:mysql://localhost:3306/micor_message"></property>
+                <property name="username" value="root"></property>
+                <property name="password" value="910214"></property>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <!--引入 mapper配置  实际只需要一个mybaits核心配置就可以了 为了清晰 分成了不同的xml文件
+    在核心配置中引入 相当于组合成一个xml文件
+    -->
+    <mappers>
+        <mapper resource="Message.xml"/>
+    </mappers>
+
+</configuration>
